@@ -1,0 +1,30 @@
+<template>
+    <div class='slds-grid mainDiv'>
+        <div class='slds-col mainDiv'>
+            <lightning-input name='Name' label='Name' onchange={handleInput}></lightning-input>
+            <lightning-input name='RecordNumber' label='RecordNumber' onchange={handleInput}></lightning-input>
+            <lightning-button name='search' label='search Accounts' onclick={handleSearchOperation}></lightning-button>
+        </div>
+        <div class='slds-col mainDiv'>
+            <!--- filter logic-->
+            <div class='filterBlock'>                
+                    <div class='slds-grid'>
+                        <div class=slds-row>
+                            <lightning-input name='searchFilterText' label='Filter' onchange={handleInput}>
+                            </lightning-input>                    
+                                                      
+                        </div>
+                    </div>                 
+            </div>
+            <!-- load list -->
+            <template if:true={copiedAccounts}>
+                <template for:each={copiedAccounts} for:item='account'>
+                    <c-lwc-first-assignment-child account={account} key={account.Id}></c-lwc-first-assignment-child>
+                </template>
+            </template>
+            <template if:true={error}>
+                <p>{error}</p>
+            </template>
+        </div>
+    </div>
+</template>
