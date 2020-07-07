@@ -1,0 +1,35 @@
+<template> 
+    <div class="parentWrap" >
+        <!-- Main block of Parent -->
+        <lightning-layout horizontal-align="space" >
+
+            <lightning-layout-item padding="around-small"> 
+                <div class="search-box"> 
+                    <!-- Search account code  Block -->
+                    <lightning-card title="Account Search Functionality" icon-name="custom:custom63"> </lightning-card>
+                        <lightning-input type="text" label="Account Name" required="True"  value={accountNamePhrase} onchange={handleNameChange} placeholder="Enter the Account Name to search "> </lightning-input>
+                        <lightning-input type="number" label="No. of Records to Fetch " required="True" value={numberOfRecords} onchange={handleCountRecords} placeholder="Enet the count "> </lightning-input> </br>
+                        <lightning-button label="Search" onclick={searchAccounts}> </lightning-button>                    
+                </div>
+            </lightning-layout-item>        
+            <lightning-layout-item padding="around-medium">
+                <div class="search-box">
+                    <!-- Account filter code block-->
+                    <lightning-card title="Filter The Required Accounts" icon-name="custom:custom66">   </lightning-card>
+                        <lightning-input name="filterBox" value={filterText} placeholder="Filter Text" id="inputDataFilter" type="Text" label="Filter Accounts:" variant="label-hidden" onchange={filterAccounts}  ></lightning-input>  
+
+                        
+                            <template if:true={copiedAccounts}>
+                                        <template for:each= {copiedAccounts} for:item="account"> 
+                                                                            
+                                            <c-lwc-assignment-one-child key={account.Id} account={account}> </c-lwc-assignment-one-child>    
+                                        </template>
+                            </template>
+                            <template if:true={error}>
+                                    {error}
+                            </template>                     
+                </div>    
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>    
+</template>
